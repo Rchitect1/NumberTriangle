@@ -110,6 +110,7 @@ public class NumberTriangle {
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
+        // keep track of the parents who the nodes of each row should attach to them
         ArrayList<NumberTriangle> tops = new ArrayList<>();
 
         // will need to return the top of the NumberTriangle,
@@ -118,11 +119,20 @@ public class NumberTriangle {
 
         String line = br.readLine();
         while (line != null) {
+
+            // create the first node (the root) of the number triangle that we return
+            // assign it to top
+            // add it to tops since it is the parent of the second row
             if (top == null){
                 int element = Integer.parseInt(line);
                 NumberTriangle tri = new NumberTriangle(element);
                 top = tri;
                 tops.add(tri);
+
+            // create a node for each element in the line from the file
+            // connect them to their appropriate parent or parents
+            // add each new node to a new list (newTops)
+            // when we finished with the row we make these nodes the parents of the next row (tops = newTops)
             } else {
                 String[] elements = line.split(" ");
                 ArrayList<NumberTriangle> newTops = new ArrayList<>();
