@@ -89,7 +89,21 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        // TODO implement this method
+        // use this method recursively
+        // return the root when in the base case (string is empty)
+        if (path.isEmpty()) {
+            return root;
+
+        // return the result of the recursive call when not in the base case (string is not empty)
+        // call retrieve method on a branch based on the character at the start of the path
+        // also pass down the substring of the path (a new path without the character that we used)
+        } else {
+            if (path.charAt(0) == 'l') {
+                return left.retrieve(path.substring(1));
+            } else if (path.charAt(0) == 'r') {
+                return right.retrieve(path.substring(1));
+            }
+        }
         return -1;
     }
 
